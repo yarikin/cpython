@@ -36,8 +36,13 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build CPython installer
-      run: .\Tools\msi\build.bat --doc -x86
-
+     run: .\Tools\msi\buildrelease.bat -x64
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-artifacts
+        path: |
+          PCbuild/amd64/
   build_win_amd64:
     name: 'Windows (x64) Installer'
     runs-on: windows-latest
